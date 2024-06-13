@@ -1,0 +1,37 @@
+                            /* CSS MOBILE  */
+
+@media (max-width: 767px){
+
+.insAnnuncioMobile{
+color: orange !important;
+}
+.insAnnuncioMobile:hover{
+    color: black !important;
+}
+.acqusita{
+    color: black !important;
+  }
+  .acqusita:hover{
+    background-color:orange !important;
+  color: white !important;
+  border: orange !important;
+  }
+.textDescription{
+  width: 50% !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

@@ -1,0 +1,153 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+  integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<app-navbar></app-navbar>
+
+
+<header class="container-fluid headerCus">
+
+  <div class="row vh-100 justify-content-center align-items-center pt-5 px-3 position-relative">
+    <div *ngIf="logNum === 1" class="text-center p-3" style="position: absolute; top: 90px; width: fit-content;">
+      <div class="log-ok">
+        Login effettuato.
+        <br>
+        Benvenut*!
+      </div>
+    </div>
+
+    <div *ngIf="logNum === 2" class="text-center p-3" style="position: absolute; top: 90px; width: fit-content;">
+      <div class="log-out">
+        Logout effettuato correttamente
+      </div>
+    </div>
+
+
+    <div *ngIf="regNum === 1" class="text-center p-3" style="position: absolute; top: 90px; width: fit-content;">
+      <div class="log-ok">
+        Registrazione effettuata. Inizia a navigare sul nostro sito!
+      </div>
+    </div>
+
+    <!-- @if(session('access.denied'))
+
+         <div class="col-3 message-alert alert alert-dismissible alert-light shadow text-center alertCus shadow" role="alert">
+
+                 {{session('access.denied')}}
+                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+
+         </div>
+
+          @endif
+
+          @if(session('message'))
+
+         <div class="col-3 message-alert alert alert-dismissible alert-light shadow text-center alertCus shadow" role="alert">
+             {{session('message')}}
+             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+         </div>
+
+         @endif -->
+
+
+    <div class="col-md-8 text-center" data-aos="fade-up">
+      <h1 class="text-uppercase text-white" style="z-index: 99999999;">AltenIO</h1>
+      <p class="textWhite px-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia unde rem vitae
+        consequuntur veritatis cum perferendis illo ducimus impedit. Neque a culpa voluptatem</p>
+      <a class="btn btn-light textBlack rounded-0 border-0 py-2 px-4 mt-3" href="">Scopri di più</a>
+    </div>
+
+  </div>
+
+  <div class="row justify-content-end">
+    <div class="col-2 text-end pe-5 position-relative">
+      <a href="#"><i
+          class="fa-solid fa-circle-chevron-up upToTop d-none textMain fa-2x position-fixed pb-5 bottom-0"></i></a>
+    </div>
+  </div>
+
+</header>
+
+<!-- {{-- 𝗠𝗔𝗜𝗡 --}} -->
+
+<main class="container my-5">
+
+  <!-- {{-- 𝗦𝗪𝗜𝗣𝗘𝗥 𝗦𝗟𝗜𝗗𝗘𝗦 𝗖𝗔𝗧𝗘𝗚𝗢𝗥𝗜𝗘 --}} -->
+  <div class="row justify-content-center pt-5">
+    <div class="col-12 text-center text-md-start">
+      <h2>SCOPRI TUTTE LE CATEGORIE</h2>
+    </div>
+  </div>
+
+  <div class="row justify-content-center my-5">
+
+    <div class="col-12 swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" *ngFor="let category of categories">
+          <div class="d-flex flex-column align-items-center">
+            <a  class="btn p-0">
+              <img [src]="'assets/media/' + category.name + '.jpg'" alt="basket" class="imgCategory img-fluid rounded-3" style="width: 400px; height: 300px b;">
+            </a>
+            <a class="btn p-0">
+              <h5 class="pt-3 text-uppercase">{{category.name}}</h5>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+  <!-- {{-- 𝗔𝗡𝗡𝗨𝗡𝗖𝗜 𝗛𝗢𝗠𝗘 --}} -->
+
+  <div class="row justify-content-around align-items-center">
+
+    <div class="col-12 col-md-6 position-relative" data-aos="fade-right">
+      <a href="" class="">
+        <img src="assets/media/img11.jpg" alt="basket" class="img-fluid rounded-3">
+      </a>
+      <div class="position-absolute bottom-0 start-0 m-5">
+        <h5 class="textWhite">SportSelection</h5>
+        <p class="textWhite">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sem orci</p>
+        <a href="" class="btn btn-dark bgMain border-0 textWhite rounded-0 ">NewsBtn</a>
+      </div>
+
+    </div>
+
+
+    <div class="col-12 col-md-6">
+
+      <div class="row p-4 justify-content-center vw-50">
+
+
+        <div *ngFor="let product of products" class="col-6 col-md-4 p-2 justify-content-center d-flex">
+          <div class="card p-2 rounded-0" style="width: 11rem;">
+            <!-- Utilizzo dell'immagine URL generata casualmente -->
+            <div class="card-img-top rounded-0 w-100"
+              [style.backgroundImage]="'url(' + product.imageUrl + ')'"
+              style="height: 140px; background-position: center; background-size: cover;">
+            </div>
+            <div class="card-body p-2 d-flex flex-column justify-content-between align-items-center text-center"
+              style="overflow: hidden; height: 190px">
+              <h5 class="card-title mt-2 text-uppercase fs-6">{{product.name}}</h5>
+              <p class="textBlue fst-italic" *ngIf="product.categoryId">{{product.categoryName}}</p>
+              <p class="textBlue fw-bold">€ {{product.price}}</p>
+              <a [routerLink]="['/singlepage/', product.productId]" class="textMain" style="font-size:1rem">View</a>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <!-- @endforeach -->
+
+    </div>
+
+  </div>
+
+</main>

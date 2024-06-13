@@ -1,0 +1,95 @@
+<nav class="navbar bgWhite position-fixed vw-100" id="mainNav">
+  <div class="container-fluid p-2" id="navContainer">
+    <!-- Logo -->
+    <div class="me-auto">
+      <a class="navbar-brand p-3 img-fluid" routerLink="/home"><img src="assets/media/logoBetacomio.png" alt=""
+        style="width: 3rem"></a>
+      </div>
+
+      <!-- Menu utente, Inserisci annuncio e pulsante del menu -->
+      <div class="d-flex justify-content-center align-items-center ms-auto">
+        <div class="dropdown mx-2">
+          <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-person-walking fa-xl textBlue userIcon"></i>
+          </a>
+
+          <ul class="dropdown-menu shadow rounded-0 borderBlack text-center drop-user">
+            <!-- Login e registrazione -->
+            <li><a class="btn btn-dark rounded-0 my-2 px-4 text-white" routerLink="/login" *ngIf="!BasicAuth.isLogged()">Login</a></li>
+            <li><a class="btn btn-dark rounded-0 my-2 px-4 text-white d-none" routerLink="/login" *ngIf="BasicAuth.isLogged()">Login</a></li>
+            <li><a class="dropdown-item my-2" routerLink="/register" *ngIf="!BasicAuth.isLogged()">Registrati</a></li>
+            <li><a class="dropdown-item my-2 d-none" routerLink="/register" *ngIf="BasicAuth.isLogged()">Registrati</a></li>
+            <!-- ADMIN -->
+
+
+          <!-- Logout -->
+          <li><button class="btn btn-dark my-2 rounded-0"
+            *ngIf="BasicAuth.isLogged()" routerLink="/home"
+            (click)="Logout.onLogout()">Logout</button>
+            <form method="POST" action="" id="form-logout" class="d-none"></form>
+          </li>
+          <li><button class="btn btn-dark my-2 rounded-0 d-none"
+            *ngIf="!BasicAuth.isLogged()">Logout</button>
+            <form method="POST" action="" id="form-logout" class="d-none"></form>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Pulsante "Inserisci annuncio" -->
+      <div class="d-none d-md-block mx-3">
+        <a class="btn btnAnnuncio px-3 py-2 borderMain textBlue" [routerLink]="BasicAuth.isLogged() ? '/create' : '/login'">
+          <i class="fa-regular fa-square-plus textBlue pe-2"></i>Inserisci annuncio</a>
+        </div>
+
+        <!-- Pulsante del menu per dispositivi mobili -->
+        <div class="d-flex me-2">
+          <button class="navbar-toggler border-0 menu-button pt-2" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+          <i class="fa-solid fa-bars textBlue fa-2x"></i><span class="mt-1 textBlue">MENU</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu laterale per dispositivi mobili -->
+  <div class="offcanvas offcanvas-end bgWhite p-0" tabindex="-1" id="offcanvasNavbar"
+  aria-labelledby="offcanvasNavbarLabel">
+  <div class="offcanvas-header position-relative">
+    <h2 class="offcanvas-title textBlue p-2" id="offcanvasNavbarLabel">MENU</h2>
+    <div class="close-modale">
+      <button type="button" class="btn-close btn-close-white position-absolute" data-bs-dismiss="offcanvas"
+      aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="navbar-nav justify-content-end flex-grow-1 p-3">
+      <!-- Elementi del menu -->
+      <!-- Elementi del menu responsivi -->
+      <li class="d-block d-md-none nav-item my-2">
+        <a class="nav-link insAnnuncioMobile" routerLink="/create">INSERISCI ANNUNCIO</a>
+      </li>
+      <li class="nav-item my-2">
+        <a class="nav-link" aria-current="page" routerLink="/home">HOME</a>
+      </li>
+      <li class="nav-item my-2">
+        <a class="nav-link" routerLink="/index">TUTTI GLI ANNUNCI</a>
+      </li>
+      <li class="nav-item my-2"  *ngIf="BasicAuth.isLogged()">
+        <a class="nav-link" routerLink="/like">I TUOI PREFERITI</a>
+      </li>
+      <li class="nav-item my-2"  *ngIf="BasicAuth.isLogged()">
+        <a class="nav-link" routerLink="/orders">I TUOI ORDINI</a>
+      </li>
+      <li class="nav-item dropdown my-2">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+        id="categoryDropdown">TUTTE LE CATEGORIE</a>
+        <ul class="dropdown-menu rounded-0 border-0" *ngFor="let category of categories">
+          <li>
+            <a class="dropdown-item dropCategory">{{ category.name }}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</nav>
